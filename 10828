@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+	public static void main(String[] args) throws Exception{
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		
+		int n = Integer.parseInt(br.readLine());
+		String s;
+		int[] arr = new int[n];
+		int cnt = 0;
+		for(int i = 0; i < n; i++) {
+			String[] str = br.readLine().split(" ");
+			if(str[0].equals("push")) {
+				arr[cnt++] = (Integer.parseInt(str[1]));
+			}else {
+				switch(str[0]) {
+					case "pop":
+						if(arr[0] == 0) {
+							// 비어있는 경우
+							sb.append(-1 + "\n");
+						}else {
+							sb.append(arr[cnt - 1] + "\n");
+							arr[cnt-- - 1] = 0;
+						}
+						break;
+					case "size":
+						sb.append(cnt + "\n");
+						break;
+					case "empty":
+						if(arr[0] == 0) {
+							// 비어있는 경우
+							sb.append(1 + "\n");
+						}else {
+							sb.append(0 + "\n");
+						}
+						break;
+					case "top":
+						if(arr[0] == 0) {
+							// 비어있는 경우
+							sb.append(-1 + "\n");
+						}else {
+							sb.append(arr[cnt - 1] + "\n");
+						}
+						break;
+				}
+			}
+		}
+		
+		System.out.print(sb);
+		br.close();
+	}
+
+}
