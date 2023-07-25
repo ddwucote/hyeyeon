@@ -1,0 +1,70 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
+public class Main {
+	public static void main(String[] args) throws  IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		Deque<Integer> que = new LinkedList<>();
+	
+		int N = Integer.parseInt(br.readLine());
+		
+		for(int i=0;i<N;i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			String s = st.nextToken();
+			
+			if(s.equals("push_front")) {
+				que.addFirst(Integer.parseInt(st.nextToken()));
+			}
+			else if(s.equals("push_back")) {
+				que.addLast(Integer.parseInt(st.nextToken()));
+			}
+			else if(s.equals("pop_front")) {
+				if(que.isEmpty())
+					sb.append(-1+"\n");
+				else {
+					int value = que.pollFirst();
+					sb.append(value+"\n");
+				}
+			}
+			else if(s.equals("pop_back")) {
+				if(que.isEmpty())
+					sb.append(-1+"\n");
+				else {
+					int value = que.pollLast();
+					sb.append(value+"\n");
+				}
+			}
+			else if(s.equals("size")) {
+				sb.append(que.size()+"\n");
+			}
+			else if(s.equals("empty")) {
+				if(que.isEmpty())
+					sb.append(1+"\n");
+				else
+					sb.append(0+"\n");
+			}
+			else if(s.equals("front")) {
+				if(que.isEmpty())
+					sb.append(-1+"\n");
+				else {
+					sb.append(que.peekFirst()+"\n");
+				}
+			}
+			else  {
+				if(que.isEmpty())
+					sb.append(-1+"\n");
+				else {
+					sb.append(que.peekLast()+"\n");
+				}
+			}
+		}
+		
+		System.out.println(sb);
+	}
+}
