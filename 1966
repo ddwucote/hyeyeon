@@ -1,0 +1,45 @@
+
+//다시 풀기!!!!!
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+
+public class Main {
+	public static void main(String[] args) throws  IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		int cnt = Integer.parseInt(br.readLine());
+		
+		for(int i=0;i<cnt;i++) {
+			StringTokenizer st1 = new StringTokenizer(br.readLine());
+			int N = Integer.parseInt(st1.nextToken());
+			int M = Integer.parseInt(st1.nextToken());
+			
+			Deque<Integer> que = new LinkedList<>();
+			int[] arr = new int[N]; //배열
+			StringTokenizer st2 = new StringTokenizer(br.readLine());
+			
+			for(int j=0;j<N;j++) {
+				arr[j] = Integer.parseInt(st2.nextToken());
+			}
+			
+			for(int j=0;j<N;j++) {
+				int max = arr[M];
+				if(arr[j]>=max) {
+					que.offer(max);
+					max = arr[j];
+				}
+					
+					
+			}
+		}
+				
+		
+		
+		
+	}
+}
