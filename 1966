@@ -1,9 +1,9 @@
 
 //다시 풀기!!!!!
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
@@ -12,34 +12,47 @@ public class Main {
 	public static void main(String[] args) throws  IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
-		int cnt = Integer.parseInt(br.readLine());
 		
-		for(int i=0;i<cnt;i++) {
+		int tc = Integer.parseInt(br.readLine());
+		
+		for(int i=0;i<tc;i++) {
 			StringTokenizer st1 = new StringTokenizer(br.readLine());
 			int N = Integer.parseInt(st1.nextToken());
 			int M = Integer.parseInt(st1.nextToken());
-			
-			Deque<Integer> que = new LinkedList<>();
-			int[] arr = new int[N]; //배열
 			StringTokenizer st2 = new StringTokenizer(br.readLine());
-			
+			LinkedList<Integer> que = new LinkedList<>();
+			LinkedList<Integer> index_que = new LinkedList<>();
+
 			for(int j=0;j<N;j++) {
-				arr[j] = Integer.parseInt(st2.nextToken());
+				que.offer(Integer.parseInt(st2.nextToken()));
+				index_que.offer(j);
 			}
 			
-			for(int j=0;j<N;j++) {
-				int max = arr[M];
-				if(arr[j]>=max) {
-					que.offer(max);
-					max = arr[j];
-				}
-					
-					
-			}
-		}
+			int cnt = 1;
+			while(!que.isEmpty()) {
+				int max = Collections.max(que);
+				int value = que.poll();
+				int value_index = index_que.poll();
 				
+				if(value == max) {
+					if(value_index == M) {
+						sb.append(cnt+"\n");
+						break;
+					}
+					cnt++;
+				}
+				else {
+					que.offer(value);
+					index_que.offer(value_index);
+				}
+			}
+			
+		}
 		
 		
+		System.out.println(sb);
+			
 		
 	}
 }
+
