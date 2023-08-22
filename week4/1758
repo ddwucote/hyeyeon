@@ -1,0 +1,35 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.StringTokenizer;
+
+public class Main {
+	public static void main(String[] args) throws NumberFormatException, IOException  {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int N = Integer.parseInt(br.readLine());
+		ArrayList<Integer> list = new ArrayList<>();
+		
+		for(int i=0;i<N;i++) {
+			int tip = Integer.parseInt(br.readLine());
+			list.add(tip);
+		}
+		
+		Collections.sort(list, Comparator.reverseOrder());
+		
+		long total = 0;
+		for(int i=0;i<N;i++) {
+			int real_tip = list.get(i)-i;
+			if(real_tip<=0)
+				break;
+			total += real_tip;
+		}
+		
+		System.out.println(total);
+		
+		
+	}
+}

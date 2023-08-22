@@ -1,0 +1,54 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
+
+public class Main {
+	public static void main(String[] args) throws  IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		PriorityQueue<Integer> queue = new PriorityQueue<>();
+		LinkedList<Integer> arr = new LinkedList<>();
+		
+				
+		int T = Integer.parseInt(br.readLine());
+		
+		for(int i=0;i<T;i++) {
+			int n = Integer.parseInt(br.readLine());
+			
+			for(int j=0;j<n;j++) {
+				StringTokenizer st = new StringTokenizer(br.readLine());
+				String c = st.nextToken();
+				int value = Integer.parseInt(st.nextToken());
+				
+				if(c.equals("I")) {
+					queue.add(value);
+					arr.clear();
+					arr.addAll(queue);
+				}
+				else {
+					if(value==1) {
+						int max = arr.peekLast();
+						queue.remove(max);
+					}
+					else {
+						int min = arr.peekFirst();
+						queue.remove(min);
+				    }
+				}
+			}
+			if(queue.isEmpty())
+				sb.append("EMPTY\n");
+			else
+				sb.append(arr.peekLast()+" "+arr.peekFirst()+"\n");
+			
+			queue.clear();
+			arr.clear();
+		}
+		System.out.println(sb);
+	}
+}

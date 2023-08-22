@@ -1,0 +1,50 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+
+public class Main {
+	static int n;
+	static ArrayList<Integer>[] tree;
+	
+	public static void main(String[] args) throws NumberFormatException, IOException  {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		
+		n = Integer.parseInt(br.readLine());
+		tree = new ArrayList[n+1];
+		for(int i=1;i<n+1;i++)
+			tree[i] = new ArrayList<>();
+		
+		Scanner sc = new Scanner(System.in);
+		for(int i=0;i<n-1;i++) {
+			int n1 = sc.nextInt();
+			int n2 = sc.nextInt();
+			tree[n1].add(n2);
+			tree[n2].add(n1);
+		}
+		
+		int c = sc.nextInt();
+		for(int i=0;i<c;i++) {
+			int t = sc.nextInt();
+			int k = sc.nextInt();
+			if(t==2) sb.append("yes\n");
+			else {
+				int cnt=0;
+				for(int temp:tree[k]) {
+					cnt++;
+				}
+				if(cnt>=2) sb.append("yes\n");
+				else sb.append("no\n");
+			}
+		}
+		
+		System.out.println(sb);
+	}
+	
+	
+	}
