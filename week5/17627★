@@ -1,0 +1,42 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
+
+
+public class Main {
+
+	static boolean root(int n) {
+		int root = (int) Math.sqrt(n);
+		if(n!=root*root)
+			return false;
+		
+		return true;
+	}
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int n = Integer.parseInt(br.readLine());
+		int m = n;
+		int sum = 0;
+	
+		int cnt = 0;
+		for(int i=(int) Math.sqrt(n);i>0;i--) {
+			if(root(m-i*i)) {
+				sum += i*i;
+				cnt++;
+				m = m-i*i;
+			}
+			if(sum==n) {
+				System.out.println(cnt);
+				break;
+			}
+		}
+	}
+}
+
