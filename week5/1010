@@ -1,0 +1,42 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
+
+public class Main {
+	static int[][] dp;
+	static int com(int m, int n) {
+		if(m==n || n==0)
+			return 1;
+		
+		if(dp[m][n]==0)
+			dp[m][n]=com(m-1,n)+com(m-1,n-1);
+		return dp[m][n];
+	}
+	
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		StringBuilder sb = new StringBuilder();
+		
+		int T = Integer.parseInt(br.readLine());
+		
+		for(int i=0;i<T;i++) {
+			st = new StringTokenizer(br.readLine());
+			
+			int N = Integer.parseInt(st.nextToken());
+			int M = Integer.parseInt(st.nextToken());
+			dp = new int[M+1][N+1];
+			
+			sb.append(com(M,N)+"\n");
+		}
+		
+		System.out.println(sb);
+	}
+
+}
