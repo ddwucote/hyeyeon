@@ -10,59 +10,61 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-	static int a,b,n,m;
-	static ArrayList<Integer>[] graph;
-	static boolean[][] check;
-	static int cnt = 0;
-	
-	static void bfs(int x, int y) {
-		Queue<Integer> q = new LinkedList<>();
-		q.add(x);
-		check[x][y] = true;
-		
-		while(!q.isEmpty()) {
-			int next = q.poll();
-			for(int i:graph[next]) {
-				if(!check[next][i]) {
-					if(i==b)
-						cnt++;
-					q.add(i);
-					check[next][i] = true;
-				}
-			}
-		}
-			
-		
-	
-	}
-	public static void main(String[] args) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		a = Integer.parseInt(st.nextToken());
-		b = Integer.parseInt(st.nextToken());
-		st = new StringTokenizer(br.readLine());
-		n = Integer.parseInt(st.nextToken());
-		m = Integer.parseInt(st.nextToken());
-		
-		graph = new ArrayList[n+1];
-		check = new boolean[n+1][n+1];
-		for(int i=0;i<=n;i++) 
-			graph[i] = new ArrayList<Integer>();
-		
-		for(int j=0;j<m;j++) {
-			st = new StringTokenizer(br.readLine());
-			int start = Integer.parseInt(st.nextToken());
-			int end = Integer.parseInt(st.nextToken());
-			graph[start].add(end);
-			graph[end].add(start);
-		}
-		
-		bfs(a, b);
-		
-		if(cnt==0)
-			System.out.println(-1);
-		else
-			System.out.println(cnt);
-		}
-	
-}
+    static int a,b,n,m;
+    static ArrayList<Integer>[] graph;
+    static boolean[] check;
+    static int cnt = 0;
+    static boolean flag = false;
+    static void bfs(int x, int y) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(x);
+        check[x] = true;
+
+        while(!q.isEmpty()) {
+            int next = q.poll();
+            for(int i:graph[next]) {
+                if(!check[i]) {
+                    if(i==b){
+                        cnt++;
+                        System.out.println(cnt);
+                        flag = true;
+                        return;
+                    }
+                    q.add(i);
+                    check[i] = true;
+                }
+            }
+        }
+
+
+
+    }
+    public static void main(String[] args) throws NumberFormatException, IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        a = Integer.parseInt(st.nextToken());
+        b = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+
+        graph = new ArrayList[n+1];
+        check = new boolean[n+1];
+        for(int i=0;i<=n;i++)
+            graph[i] = new ArrayList<Integer>();
+
+        for(int j=0;j<m;j++) {
+            st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            graph[start].add(end);
+            graph[end].add(start);
+        }
+
+        bfs(a, b);
+
+        if(!flag)
+            System.out.println(-1);
+
+
+    }}
